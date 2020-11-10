@@ -3,6 +3,7 @@
  *
  * Created on October 4, 2005, 9:35 PM
  */
+package com.davidsouther.chess;
 
 /**
  *
@@ -52,7 +53,7 @@ public class ChessMainFrame extends JFrame {
 
     public static ResourceBundle getResourceBundle() {
         if (bundle == null) {
-            bundle = ResourceBundle.getBundle("chessProperties", locale);
+            bundle = ResourceBundle.getBundle("chess", locale);
         }
         return bundle;
     }

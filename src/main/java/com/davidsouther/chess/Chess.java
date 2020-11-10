@@ -1,3 +1,4 @@
+package com.davidsouther.chess;
 
 import java.util.*;
 import java.io.*;

@@ -1,3 +1,4 @@
+package com.davidsouther.chess;
 
 /*
  * @(#)ExampleFileFilter.java	1.6 03/01/23

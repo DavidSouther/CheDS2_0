@@ -1,3 +1,4 @@
+package com.davidsouther.chess;
 
 public class ChessMove extends Move implements java.io.Serializable {
 	public int from;

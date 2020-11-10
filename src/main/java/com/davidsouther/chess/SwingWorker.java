@@ -1,3 +1,4 @@
+package com.davidsouther.chess;
 
 import javax.swing.SwingUtilities;
 

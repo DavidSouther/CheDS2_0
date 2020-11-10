@@ -1,3 +1,4 @@
+package com.davidsouther.chess;
 
 import java.lang.reflect.Array;
 import java.util.*;

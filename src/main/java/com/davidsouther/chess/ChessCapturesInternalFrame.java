@@ -3,6 +3,7 @@
  *
  * Created on November 2, 2005, 10:19 PM
  */
+package com.davidsouther.chess;
 
 import java.awt.*;
 import java.awt.event.*;

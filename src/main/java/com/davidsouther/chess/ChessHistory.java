@@ -3,6 +3,7 @@
  *
  * Created on November 13, 2005, 5:28 PM
  */
+package com.davidsouther.chess;
 
 import java.util.*;
 import javax.swing.table.AbstractTableModel;
