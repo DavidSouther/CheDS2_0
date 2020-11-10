@@ -53,7 +53,6 @@ public abstract class GameSearch {
     }
 
     protected ArrayList minMaxHelp(int depth, Position p, boolean player, float alpha, float beta) {
-        System.out.println("");
         if (GameSearch.DEBUG)
             System.out.println("alphaBetaHelper(" + depth + "," + p + "," + alpha + "," + beta + ")");
         if (maxDepth(p, depth)) {
@@ -110,8 +109,8 @@ public abstract class GameSearch {
             for (int i = 0; i < al.size(); i++) {
                 System.out.println(" next element: " + al.get(i));
             }
+            System.out.println((ChessPosition) al.get(1));
         }
-        System.out.println((ChessPosition) al.get(1));
         currentMove = ChessHistory.findMove((ChessPosition) currentPosition, (ChessPosition) al.get(1));
     }
 

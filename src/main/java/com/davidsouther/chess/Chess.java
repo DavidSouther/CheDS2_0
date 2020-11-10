@@ -216,7 +216,8 @@ public class Chess extends GameSearch {
                 chessPosT.board[j] = pos.board[j];
             chessPosT.board[possibleMoveList[i].to] = chessPosT.board[possibleMoveList[i].from];
             chessPosT.board[possibleMoveList[i].from] = 0;
-            System.out.println(chessPosT);
+            if (GameSearch.DEBUG)
+                System.out.println(chessPosT);
             if (player == this.PROGRAM) {
                 if (!check(chessPosT, player)) {
                     chessPos.add(chessPosT);

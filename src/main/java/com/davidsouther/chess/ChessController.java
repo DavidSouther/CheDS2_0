@@ -26,7 +26,7 @@ public class ChessController {
     private JFileChooser fileChooser;
 
     public boolean playing;
-    private boolean TESTBOARD = /* false;// */ true; // for Debugging
+    private boolean TESTBOARD = false;// */ true; // for Debugging
 
     // private ChessDifficultyDialog cdd;
     // private ChessLoadSaveSialog clsd;
