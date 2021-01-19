@@ -22,7 +22,8 @@ public class ChessMainFrame extends JFrame {
 
     private static ResourceBundle bundle = null;
     private static Locale locale;
-    private static String imagePath;
+
+    ChessController controller;
 
     /** Creates a new instance of ChessMainWindow */
     public ChessMainFrame() {
@@ -32,7 +33,7 @@ public class ChessMainFrame extends JFrame {
         // setTitle("Chess");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDefaultLookAndFeelDecorated(false);
-        ChessController control = new ChessController(this);
+        controller = new ChessController(this);
         // pack();
         moveToCenter();
         // setVisible(true);
@@ -82,9 +83,6 @@ public class ChessMainFrame extends JFrame {
         String language;
         String country;
 
-        if (args.length > 0) {
-            imagePath = new String(args[0]);
-        }
         if (args.length != 3) {
             language = new String("en");
             country = new String("US");
@@ -95,7 +93,8 @@ public class ChessMainFrame extends JFrame {
         locale = new Locale(language, country);
         System.out.println(locale);
 
-        ChessMainFrame CMF = new ChessMainFrame();
-        CMF.setVisible(true);
+        ChessMainFrame cmf = new ChessMainFrame();
+        cmf.setVisible(true);
+        cmf.controller.startGame();
     }
 }

@@ -23,7 +23,6 @@ public class ChessBoardInternalFrame extends /* JPanel */ JInternalFrame impleme
     private JLabel[][] board;
 
     private int[] location;
-    private boolean dragging = false;
     private ChessMove dragMove;
 
     /** Creates a new instance of ChessBoardInternalFrame */
@@ -155,10 +154,6 @@ public class ChessBoardInternalFrame extends /* JPanel */ JInternalFrame impleme
         label.setForeground(fcolor);
         label.setBorder(BorderFactory.createLineBorder(Color.black));
         return label;
-    }
-
-    private JLabel createFiller() {
-        return new JLabel();
     }
 
     public void mouseEntered(MouseEvent e) {

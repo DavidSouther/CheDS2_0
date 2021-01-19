@@ -13,8 +13,8 @@ import javax.swing.table.AbstractTableModel;
  * @author David Souther
  */
 public class ChessHistory extends AbstractTableModel implements java.io.Serializable {
-    private ArrayList whiteMoves;
-    private ArrayList blackMoves;
+    private ArrayList<Move> whiteMoves;
+    private ArrayList<Move> blackMoves;
 
     private final boolean BLACK = true;
     private final boolean WHITE = false;
@@ -25,8 +25,8 @@ public class ChessHistory extends AbstractTableModel implements java.io.Serializ
 
     /** Creates a new instance of ChessHistory */
     public ChessHistory() {
-        whiteMoves = new ArrayList(30);
-        blackMoves = new ArrayList(30);
+        whiteMoves = new ArrayList<Move>(30);
+        blackMoves = new ArrayList<Move>(30);
     }
 
     public void addMove(ChessMove m) {

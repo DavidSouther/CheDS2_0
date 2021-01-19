@@ -6,10 +6,7 @@
 package com.davidsouther.chess;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.text.MaskFormatter;
-import javax.swing.table.*;
 
 /**
  *
@@ -17,8 +14,6 @@ import javax.swing.table.*;
  */
 public class ChessMoveInternalFrame extends JInternalFrame {
 	private ChessController control;
-	private ChessDesktop parent;
-	private JPanel panel;
 
 	private JTable history;
 
@@ -31,7 +26,6 @@ public class ChessMoveInternalFrame extends JInternalFrame {
 				false, // maximizable
 				true); // iconifiable
 		control = c;
-		parent = d;
 
 		initGui();
 		pack();

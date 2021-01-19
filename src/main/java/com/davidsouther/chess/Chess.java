@@ -1,10 +1,8 @@
 package com.davidsouther.chess;
 
 import java.util.*;
-import java.io.*;
 
 public class Chess extends GameSearch {
-
     /**
      * Notes: PROGRAM false -1, HUMAN true 1
      */
@@ -20,7 +18,7 @@ public class Chess extends GameSearch {
      * @param Position p Position to be searched
      */
     public boolean drawnPosition(Position p) {
-        ArrayList pp;
+        ArrayList<Position> pp;
         if (!check((ChessPosition) p, Chess.HUMAN)) {
             pp = possibleMoves(p, Chess.HUMAN);
             if (pp.size() == 0)
@@ -76,7 +74,7 @@ public class Chess extends GameSearch {
     public boolean checkMate(ChessPosition p, boolean player) {
         if (!check(p, player))
             return false;
-        ArrayList ps = possibleMoves(p, player);
+        ArrayList<Position> ps = possibleMoves(p, player);
         for (int i = 0; i < ps.size(); i++) {
             if (!check((ChessPosition) ps.get(i), player))
                 return false;
@@ -202,13 +200,13 @@ public class Chess extends GameSearch {
      * 
      * @param boolean player player to be considered
      */
-    public ArrayList possibleMoves(Position p, boolean player) {
+    public ArrayList<Position> possibleMoves(Position p, boolean player) {
         if (GameSearch.DEBUG)
             System.out.println("posibleMoves(" + p + "," + player + ")");
         ChessPosition pos = (ChessPosition) p;
         int num = calcPossibleMoves(pos, player);
 
-        ArrayList chessPos = new ArrayList();
+        ArrayList<Position> chessPos = new ArrayList<>();
         ChessPosition chessPosT;
         for (int i = 0; i < num; i++) {
             chessPosT = new ChessPosition();
@@ -218,7 +216,7 @@ public class Chess extends GameSearch {
             chessPosT.board[possibleMoveList[i].from] = 0;
             if (GameSearch.DEBUG)
                 System.out.println(chessPosT);
-            if (player == this.PROGRAM) {
+            if (player == PROGRAM) {
                 if (!check(chessPosT, player)) {
                     chessPos.add(chessPosT);
                 }
@@ -233,7 +231,7 @@ public class Chess extends GameSearch {
      *
      */
     public boolean maxDepth(Position p, int depth) {
-        // if(wonPosition(p, HUMAN) || wonPosition(p, PROGRAM)) return true;
+        if(wonPosition(p, HUMAN) || wonPosition(p, PROGRAM)) return true;
         if (depth < 1)
             return false;
         return true;
@@ -247,11 +245,6 @@ public class Chess extends GameSearch {
         ChessPosition pos2 = new ChessPosition();
         for (int i = 0; i < 120; i++)
             pos2.board[i] = pos.board[i];
-        int pp;
-        if (player)
-            pp = 1;
-        else
-            pp = -1;
         if (GameSearch.DEBUG)
             System.out.println("makeMove: m.from = " + m.from + ", m.to = " + m.to);
         pos2.board[m.to] = pos2.board[m.from];
@@ -335,7 +328,7 @@ public class Chess extends GameSearch {
             } else {
                 control = humanControl;
             }
-            int count = 0, side_index, move_offset, temp, next_square;
+            int side_index, move_offset, next_square;
             int piece_index = index[piece_type];
             int move_index = pieceMovementTable[piece_index];
             if (piece < 0)
@@ -422,7 +415,7 @@ public class Chess extends GameSearch {
             } else {
                 control = humanControl;
             }
-            int count = 0, side_index, move_offset, temp, next_square;
+            int side_index, move_offset, next_square;
             int piece_index = index[piece_type];
             int move_index = pieceMovementTable[piece_index];
             if (piece < 0)

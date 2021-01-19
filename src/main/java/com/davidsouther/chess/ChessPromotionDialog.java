@@ -5,9 +5,7 @@
  */
 package com.davidsouther.chess;
 
-import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 import javax.swing.*;
 
 /**
@@ -21,7 +19,7 @@ public class ChessPromotionDialog extends JDialog {
     /** Creates a new instance of ChessPromotionDialog */
     public ChessPromotionDialog(JFrame owner, ChessDesktop d) {
         super(owner, true);
-        setDefaultCloseOperation(this.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         setTitle(ChessMainFrame.getString("promoteTitle"));
         desktop = d;
         this.initGui();

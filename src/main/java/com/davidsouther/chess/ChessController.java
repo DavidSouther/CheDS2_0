@@ -5,8 +5,6 @@
  */
 package com.davidsouther.chess;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 
@@ -28,11 +26,7 @@ public class ChessController {
     public boolean playing;
     private boolean TESTBOARD = false;// */ true; // for Debugging
 
-    // private ChessDifficultyDialog cdd;
-    // private ChessLoadSaveSialog clsd;
-
     /** Creates a new instance of ChessController */
-
     public ChessController(JFrame o) {
         owner = o;
         chess = new Chess();
@@ -45,6 +39,9 @@ public class ChessController {
 
         owner.setJMenuBar(menu.getMenuBar());
         owner.getContentPane().add(desktop.getDesktopPane());
+    }
+
+    public void startGame() {
         desktop.newGame();
     }
 
@@ -61,13 +58,13 @@ public class ChessController {
                     lastPosition.board[i] = currentPosition.board[i];
                 if (currentPosition.board[m.from] == ChessPosition.PAWN && (m.to >= 92 && m.to <= 99))
                     promote(m); // Check for promotion
-                currentPosition = (ChessPosition) chess.makeMove(lastPosition, chess.HUMAN, m); // make the move
-                addCapturedPiece(history.capturedPiece(lastPosition, currentPosition)); // update captures
-                String ch = chess.check(currentPosition, chess.PROGRAM) ? "Check" : "";
+                currentPosition = (ChessPosition) Chess.makeMove(lastPosition, Chess.HUMAN, m); // make the move
+                addCapturedPiece(ChessHistory.capturedPiece(lastPosition, currentPosition)); // update captures
+                String ch = chess.check(currentPosition, Chess.PROGRAM) ? "Check" : "";
                 desktop.setStatus(m.toString() + ch);
                 updateBoard();
                 updateHistory(m); // updateGUI
-                if (chess.wonPosition(currentPosition, chess.HUMAN))
+                if (chess.wonPosition(currentPosition, Chess.HUMAN))
                     desktop.humanWon(); // check win
                 if (chess.drawnPosition(currentPosition))
                     desktop.staleMate(); // and Draw
@@ -86,7 +83,7 @@ public class ChessController {
     public void forceMove(ChessMove m) {
         if (!playing) {
             playing = true;
-            currentPosition = (ChessPosition) chess.makeMove(currentPosition, chess.HUMAN, m); // make the move
+            currentPosition = (ChessPosition) Chess.makeMove(currentPosition, Chess.HUMAN, m); // make the move
             chess.setPosition((Position) currentPosition); // set the chess to this move
             desktop.setStatus(m.toString());
             updateBoard();
@@ -269,9 +266,6 @@ public class ChessController {
         lastPosition.board[m.from] = d.getChoice();
         currentPosition.board[m.from] = ChessPosition.BLANK;
         currentPosition.board[m.to] = d.getChoice();
-        // System.out.println(d.getChoice());
-        // System.out.println(lastPosition.printPretty());
-        // System.out.println(currentPosition.printPretty());
     }
 
     private synchronized void computerPlayGame() {
@@ -285,19 +279,19 @@ public class ChessController {
                 chess.setPosition((Position) currentPosition); // set chess to this position
                 chess.playGame();
                 m = (ChessMove) chess.getMove(); // Find and get the move
-                currentPosition = (ChessPosition) chess.makeMove(currentPosition, chess.PROGRAM, m); // make the move
+                currentPosition = (ChessPosition) Chess.makeMove(currentPosition, Chess.PROGRAM, m); // make the move
                 chess.setPosition((Position) currentPosition); // set the chess to this move
-                addCapturedPiece(history.capturedPiece(lastPosition, currentPosition)); // update captures
-                String ch = chess.check(currentPosition, chess.HUMAN) ? "Check" : "";
+                addCapturedPiece(ChessHistory.capturedPiece(lastPosition, currentPosition)); // update captures
+                String ch = chess.check(currentPosition, Chess.HUMAN) ? "Check" : "";
                 // System.out.println(chess.check(currentPosition, chess.HUMAN));
                 updateBoard();
                 updateHistory(m);
                 desktop.setStatus(m.toString() + ch); // update GUI
-                if (chess.wonPosition(currentPosition, chess.PROGRAM))
+                if (chess.wonPosition(currentPosition, Chess.PROGRAM))
                     desktop.programWon(); // check Win
                 if (chess.drawnPosition(currentPosition))
                     desktop.staleMate(); // and draw
-                return new Boolean(true); // return value not used by this program
+                return true; // return value not used by this program
             }
 
             // Runs on the event-dispatching thread.

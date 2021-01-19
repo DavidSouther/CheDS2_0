@@ -6,9 +6,7 @@
 package com.davidsouther.chess;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
 import java.io.*;
 
 /**
@@ -164,14 +162,12 @@ public class ChessDesktop {
 
     private void pack() {
         Rectangle b = board.getBounds();
-        Rectangle m = moveF.getBounds();
         moveF.setLocation((int) b.getWidth() + 10, 1);
         board.show();
         moveF.show();
     }
 
     private void buildGraphics() {
-        Toolkit tk = Toolkit.getDefaultToolkit();
         String f = ChessMainFrame.getString("imagesPath"), s = "/", e = ".png", c, p = "pawn", r = "rook", n = "knight",
                 b = "bishop", q = "queen", k = "king";
 
@@ -217,28 +213,23 @@ public class ChessDesktop {
                                     // your biggest image, in bytes.
         int count = 0;
         BufferedInputStream imgStream = new BufferedInputStream(ChessDesktop.class.getResourceAsStream(path));
-        if (imgStream != null) {
-            byte buf[] = new byte[MAX_IMAGE_SIZE];
-            try {
-                count = imgStream.read(buf);
-            } catch (IOException ieo) {
-                System.err.println("Couldn't read stream from file: " + path);
-            }
+        byte buf[] = new byte[MAX_IMAGE_SIZE];
+        try {
+            count = imgStream.read(buf);
+        } catch (IOException ieo) {
+            System.err.println("Couldn't read stream from file: " + path);
+        }
 
-            try {
-                imgStream.close();
-            } catch (IOException ieo) {
-                System.err.println("Can't close file " + path);
-            }
+        try {
+            imgStream.close();
+        } catch (IOException ieo) {
+            System.err.println("Can't close file " + path);
+        }
 
-            if (count <= 0) {
-                System.err.println("Empty file: " + path);
-                return null;
-            }
-            return new ImageIcon(Toolkit.getDefaultToolkit().createImage(buf));
-        } else {
-            System.err.println("Couldn't find file: " + path);
+        if (count <= 0) {
+            System.err.println("Empty file: " + path);
             return null;
         }
+        return new ImageIcon(Toolkit.getDefaultToolkit().createImage(buf));
     }
 }
